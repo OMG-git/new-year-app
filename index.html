@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="オリジナル年賀状を簡単にデザイン。テンプレートやスタンプを使って、美しい年賀状を作成・印刷・ダウンロード。" />
+  <title>年賀状デザイナー</title>
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#D4342A">
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
+  <link rel="apple-touch-icon" href="./icons/icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-DgqjJ6IU.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DnU6yKOt.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Top Page -->
+    <div id="top-page" class="page active">
+      <header class="top-header">
+        <div class="header-content">
+          <h1 class="app-title">
+            <span class="title-icon">🎍</span>
+            年賀状デザイナー
+            <span class="title-icon">🎍</span>
+          </h1>
+          <p class="app-subtitle">オリジナル年賀状を簡単に作成・印刷</p>
+        </div>
+      </header>
+
+      <main class="top-main">
+        <div id="resume-container" style="display:none; text-align:center; margin-bottom:40px;">
+          <button id="btn-resume" class="btn-blank"
+            style="border-color:var(--accent-primary); color:var(--accent-primary);">
+            <span class="blank-icon">📂</span>
+            続きから作成
+          </button>
+        </div>
+        <section class="template-section">
+          <div class="category-tabs">
+            <button class="cat-tab active" data-category="all">すべて</button>
+            <button class="cat-tab" data-category="japanese">和風</button>
+            <button class="cat-tab" data-category="pop">ポップ</button>
+            <button class="cat-tab" data-category="simple">シンプル</button>
+            <button class="cat-tab" data-category="photo">写真フレーム</button>
+          </div>
+          <div id="template-grid" class="template-grid"></div>
+          <button id="btn-blank" class="btn-blank">
+            <span class="blank-icon">＋</span>
+            白紙から作成
+          </button>
+        </section>
+      </main>
+    </div>
+
+    <!-- Editor Page -->
+    <div id="editor-page" class="page">
+      <!-- Top Toolbar -->
+      <div class="editor-toolbar">
+        <button id="btn-back" class="toolbar-btn" title="戻る">
+          <span>← 戻る</span>
+        </button>
+        <div class="toolbar-center">
+          <div class="face-tabs">
+            <button class="face-tab active" data-face="design">デザイン面</button>
+            <button class="face-tab" data-face="address">宛名面</button>
+          </div>
+        </div>
+        <div class="toolbar-right">
+          <button id="btn-undo" class="toolbar-btn" title="元に戻す">↩</button>
+          <button id="btn-redo" class="toolbar-btn" title="やり直し">↪</button>
+          <button id="btn-save" class="toolbar-btn" title="保存">💾</button>
+          <button id="btn-print" class="toolbar-btn accent" title="印刷">🖨 印刷</button>
+          <button id="btn-download" class="toolbar-btn primary" title="ダウンロード">⬇ DL</button>
+        </div>
+      </div>
+
+      <div class="editor-body">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+          <div class="tool-tabs">
+            <button class="tool-tab active" data-tool="text" title="テキスト">📝</button>
+            <button class="tool-tab" data-tool="stamp" title="スタンプ">🎨</button>
+            <button class="tool-tab" data-tool="image" title="画像">🖼</button>
+            <button class="tool-tab" data-tool="background" title="背景">🎆</button>
+            <button class="tool-tab" data-tool="zodiac" title="干支">🐲</button>
+          </div>
+
+          <!-- Text Panel -->
+          <div class="tool-panel active" id="panel-text">
+            <h3 class="panel-title">テキスト編集</h3>
+            <button id="btn-add-text" class="panel-btn primary">+ テキスト追加</button>
+            <div class="panel-group">
+              <label>定型文</label>
+              <div class="preset-texts">
+                <button class="preset-btn" data-text="あけましておめでとうございます">あけましておめでとう</button>
+                <button class="preset-btn" data-text="謹賀新年">謹賀新年</button>
+                <button class="preset-btn" data-text="迎春">迎春</button>
+                <button class="preset-btn" data-text="賀正">賀正</button>
+                <button class="preset-btn" data-text="旧年中は大変お世話になりました">旧年中は…</button>
+                <button class="preset-btn" data-text="本年もよろしくお願いいたします">本年もよろしく…</button>
+              </div>
+            </div>
+            <div class="panel-group" id="text-props" style="display:none">
+              <label>フォント</label>
+              <select id="font-family">
+                <option value="Noto Serif JP">明朝体</option>
+                <option value="Noto Sans JP">ゴシック体</option>
+                <option value="Zen Maru Gothic">丸ゴシック</option>
+              </select>
+              <label>サイズ</label>
+              <input type="range" id="font-size" min="12" max="120" value="36">
+              <span id="font-size-val">36px</span>
+              <label>色</label>
+              <input type="color" id="font-color" value="#333333">
+              <div class="prop-row">
+                <button id="btn-bold" class="prop-btn">B</button>
+                <button id="btn-vertical" class="prop-btn">縦書</button>
+                <button id="btn-delete-obj" class="prop-btn danger">削除</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stamp Panel -->
+          <div class="tool-panel" id="panel-stamp">
+            <h3 class="panel-title">スタンプ</h3>
+            <div id="stamp-grid" class="stamp-grid"></div>
+          </div>
+
+          <!-- Image Panel -->
+          <div class="tool-panel" id="panel-image">
+            <h3 class="panel-title">画像</h3>
+            <button id="btn-upload-image" class="panel-btn primary">📁 画像をアップロード</button>
+            <input type="file" id="image-input" accept="image/*" style="display:none">
+            <div class="panel-group" id="image-props" style="display:none">
+              <label>切り抜き</label>
+              <div class="prop-row">
+                <button id="btn-crop-rect" class="prop-btn">矩形</button>
+                <button id="btn-crop-circle" class="prop-btn">円形</button>
+              </div>
+              <button id="btn-delete-img" class="prop-btn danger">削除</button>
+            </div>
+          </div>
+
+          <!-- Background Panel -->
+          <div class="tool-panel" id="panel-background">
+            <h3 class="panel-title">背景</h3>
+            <div class="panel-group">
+              <label>タイプ</label>
+              <select id="bg-type">
+                <option value="color">単色</option>
+                <option value="gradient">グラデーション</option>
+                <option value="pattern">和柄パターン</option>
+              </select>
+            </div>
+            <div class="panel-group" id="bg-color-group">
+              <label>色</label>
+              <input type="color" id="bg-color" value="#FFFFFF">
+            </div>
+            <div class="panel-group" id="bg-gradient-group" style="display:none">
+              <label>色1</label>
+              <input type="color" id="bg-grad1" value="#FF6B6B">
+              <label>色2</label>
+              <input type="color" id="bg-grad2" value="#FFE66D">
+              <label>方向</label>
+              <select id="bg-grad-dir">
+                <option value="to bottom">上→下</option>
+                <option value="to right">左→右</option>
+                <option value="to bottom right">左上→右下</option>
+              </select>
+            </div>
+            <div class="panel-group" id="bg-pattern-group" style="display:none">
+              <label>パターン</label>
+              <div class="pattern-grid">
+                <button class="pattern-btn active" data-pattern="ichimatsu">市松</button>
+                <button class="pattern-btn" data-pattern="asanoha">麻の葉</button>
+                <button class="pattern-btn" data-pattern="seigaiha">青海波</button>
+                <button class="pattern-btn" data-pattern="sayagata">紗綾形</button>
+              </div>
+              <label>色</label>
+              <input type="color" id="pattern-color1" value="#D4342A">
+              <input type="color" id="pattern-color2" value="#FFFFFF">
+            </div>
+          </div>
+
+          <!-- Zodiac Panel -->
+          <div class="tool-panel" id="panel-zodiac">
+            <h3 class="panel-title">干支設定</h3>
+            <div id="zodiac-grid" class="zodiac-grid"></div>
+          </div>
+        </aside>
+
+        <!-- Canvas Area -->
+        <div class="canvas-area">
+          <div class="canvas-container" id="canvas-container">
+            <canvas id="main-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Print view (hidden, used for printing) -->
+    <div id="print-view" class="print-view">
+      <img id="print-image" alt="年賀状">
+    </div>
+  </div>
+
+</body>
+
+</html>
