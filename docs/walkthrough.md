@@ -81,6 +81,23 @@ d:\VibeCoding\年賀状アプリ\
 └── index.html          # エントリーポイント
 ```
 
+### 🌐 GitHub Pages へのデプロイ
+
+以下の手順で GitHub Pages にページを公開できます：
+
+1. GitHub で新しいリポジトリを作成します
+2. 以下のコマンドでリモートリポジトリを追加してコードをプッシュします（USERNAMEとREPO_NAMEは置き換えてください）：
+   ```bash
+   git remote add origin https://github.com/USERNAME/REPO_NAME.git
+   git branch -M main
+   git push -u origin main
+   ```
+3. 以下のコマンドを実行してデプロイします：
+   ```bash
+   npm run deploy
+   ```
+4. GitHub のリポジトリ設定 (Settings > Pages) を確認し、自動的に公開されます。
+
 ### トラブルシューティング
 
 - **Vercel デプロイエラー**: `Error: Detected linked project does not have "id"` と表示される場合は、プロジェクトフォルダ内の `.vercel` フォルダ（隠しフォルダ）を削除してから再度実行してください。

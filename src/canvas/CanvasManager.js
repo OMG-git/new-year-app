@@ -479,6 +479,38 @@ export class CanvasManager {
         this.saveHistory();
     }
 
+    // --- Responsive ---
+    fitToScreen() {
+        const wrapper = document.getElementById('canvas-container');
+        const parent = document.querySelector('.canvas-area');
+
+        if (!wrapper || !parent) return;
+
+        // Reset transform to get accurate measurements
+        // wrapper.style.transform = 'none'; // Optional, but helps if we need real size.
+        // But reading clientWidth of parent is unaffected by child transform.
+
+        const padding = 20; // 20px padding * 2? No, just some margin.
+        const availW = parent.clientWidth - padding * 2;
+        const availH = parent.clientHeight - padding * 2;
+
+        if (availW <= 0 || availH <= 0) return;
+
+        // Calculate scale to fit
+        const scaleW = availW / CANVAS_WIDTH;
+        const scaleH = availH / CANVAS_HEIGHT;
+        const scale = Math.min(scaleW, scaleH, 1); // Max scale 1.0
+
+        // Apply scale
+        wrapper.style.transform = `scale(${scale})`;
+        wrapper.style.transformOrigin = 'center center';
+
+        // Adjust margins to avoid excess scrolling if scaled down
+        // This is tricky with Flexbox centering, but 'center center' usually works well visually.
+        // If we wanted to remove scrollbars completely, we might need negative margins.
+        // For now, visual fit is the priority.
+    }
+
     getCanvas() {
         return this.fabricCanvas;
     }

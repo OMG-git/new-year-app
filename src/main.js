@@ -19,9 +19,17 @@ class NengaApp {
     this.renderTemplates();
     this.renderStamps();
     this.renderZodiac();
+
+    // Responsive resize
+    window.addEventListener('resize', () => {
+      if (this.canvasManager) {
+        this.canvasManager.fitToScreen();
+      }
+    });
   }
 
   // ====== Page Navigation ======
+
   showPage(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
@@ -101,6 +109,11 @@ class NengaApp {
     // Reset face to design
     document.querySelectorAll('.face-tab').forEach(t => t.classList.remove('active'));
     document.querySelector('.face-tab[data-face="design"]').classList.add('active');
+
+    // Fit to screen after a short delay to ensure layout is ready
+    setTimeout(() => {
+      this.canvasManager.fitToScreen();
+    }, 50);
   }
 
   bindEditor() {
