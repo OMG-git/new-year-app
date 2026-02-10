@@ -1,0 +1,17 @@
+{
+    "name": "年賀状デザイナー",
+    "short_name": "年賀状",
+    "description": "オリジナル年賀状を簡単にデザイン・印刷",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f0f1a",
+    "theme_color": "#D4342A",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/icons/icon.svg",
+            "sizes": "192x192 512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}

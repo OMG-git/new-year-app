@@ -1,0 +1,41 @@
+{
+  "name": "nenga-designer",
+  "private": true,
+  "version": "1.0.0",
+  "description": "年賀状デザイナー - オリジナル年賀状を簡単に作成・印刷",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron:dev": "npm run build && electron .",
+    "electron:build": "npm run build && electron-builder --win portable",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8",
+    "gh-pages": "^6.3.0",
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "fabric": "^7.1.0"
+  },
+  "build": {
+    "appId": "com.nenga.designer",
+    "productName": "年賀状デザイナー",
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "public/icons/icon-512.png"
+    },
+    "portable": {
+      "artifactName": "年賀状デザイナー.exe"
+    }
+  }
+}
